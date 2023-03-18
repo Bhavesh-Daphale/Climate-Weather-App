@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/weather.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">	
+  	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  	<script src="https://kit.fontawesome.com/d92759df72.js" crossorigin="anonymous"></script>
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="heading">Cli<span>Mate</span></div>
+            <form action="/weather-report" method="POST">
+                <input type="text" name="cityName" placeholder="Enter city name">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </header>
+        <div class="current">
+            <div class="current-city">Weather in <span><%=current.name+", "+current.sys.country%></span></div>
+            <div class="current-date"><%=date%></div>
+            <div class="current-temp-icon">
+                <div class="current-parameters">
+                    <% var str = JSON.stringify(current.main.temp); %>
+                    <div class="current-temp"><%=str.substring(0, 2)%>°</div>
+                    <div class="parameters">
+                        <p>
+                            <i class="fa-solid fa-wind"></i>
+                            <%=current.wind.speed%> m/s
+                        </p>
+                        <p>
+                            <i class="fa-solid fa-droplet"></i>
+                            <%=current.main.humidity%>%
+                        </p>
+                        <p>
+                            <i class="fa-solid fa-p"></i>
+                            <%=current.main.pressure%> N/m<sup>2</sup>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="current-icon"><img src="/images/icons/<%=current.weather[0].icon%>.png" alt=""></div>
+            </div>
+            
+            
+        </div>
+        <div class="forecast">
+            <%for(let i=0;i<forecast.list.length;i++) {%>
+            <div class="forecast-card">
+                <p class="forecast-date"><%=JSON.stringify(forecast.list[i].dt_txt).substring(3,11 )%></p>
+                <p class="forecast-time"><%=JSON.stringify(forecast.list[i].dt_txt).substring(12,17 )%></p>
+                <div class="forecast-icon">
+                    <i class="<%=icons['i' + forecast.list[i].weather[0].icon]%>"></i> 
+                </div>
+                <div class="forecast-temp"><%=JSON.stringify(forecast.list[i].main.temp).substring(0,2 )%>°</div>
+            </div>
+            <%}%>
+
+
+
+            <!-- <div class="forecast-card">
+                <p class="forecast-date">22-10-23</p>
+                <p class="forecast-time">20:55</p>
+                <div class="forecast-icon">
+                    <i class="fa-solid fa-cloud"></i> 
+                </div>
+                <div class="forecast-temp">18°C</div>
+            </div>  -->
+
+        </div>
+    </div>
+</body>
+</html>

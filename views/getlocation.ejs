@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <header>Cli<span>Mate</span></header>
+        <div class="get-location">
+            <form action="/" method="POST">
+                <input class="input-field" type="text" id="cityName" name="cityName" placeholder="Enter your city">
+            </form>
+            <div class="seperator"></div>
+            <button class="btn-getloc">Get location</button>
+        </div>
+
+    </div>
+
+    <!-- <script>
+        const input = document.querySelector('#cityName'); 
+        // Define a function to handle the success case for the geolocation request
+function showPosition(position) {
+  // Extract the latitude and longitude from the position object
+  const latitude = position.coords.latitude;
+  const longitude = position.coords.longitude;
+
+  // Send a reverse geocoding request to OpenStreetMap using the latitude and longitude
+  const reverseGeocodingUrl = `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`;
+  fetch(reverseGeocodingUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Extract the city name from the reverse geocoding response
+      const cityName = data.address.city || data.address.town || data.address.village;
+      input.value = cityName;
+      
+      // Send the city name to the Node.js server using a POST request
+      const postUrl = '/'; // Replace with the URL for your Node.js server
+      fetch(postUrl, {
+        method: 'POST'
+      })
+        .then(response => response.text())
+        .then(responseText => {
+          console.log(`Server response: ${responseText}`);
+        })
+        .catch(error => {
+          console.error(`Error sending data to server: ${error.message}`);
+        });
+    })
+    .catch(error => {
+      console.error(`Error: ${error.message}`);
+    });
+}
+
+
+// Define a function to handle the error case for the geolocation request
+function showError(error) {
+  console.error(`Error: ${error.message}`);
+}
+
+// Find the button element with class "btn-getloc"
+const btnGetLoc = document.querySelector('.btn-getloc');
+
+// Add a click event listener to the button element
+btnGetLoc.addEventListener('click', function() {
+  // Check if geolocation is supported by the browser
+  if ("geolocation" in navigator) {
+    // Request the user's current location
+    navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else {
+    console.error("Geolocation is not supported by this browser.");
+  }
+});
+
+    
+
+    </script> -->
+</body>
+</html>
