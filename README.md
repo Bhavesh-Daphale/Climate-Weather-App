@@ -1,6 +1,6 @@
 # Climate-Weather-App
 
-Climate is a weather app that take city name as Input and the Displays the current weather and forecast for next 5 days.
+Climate is a weather app that take city name as Input and then Displays the current weather and forecast for next 5 days for the given city.
 i have used openWeather API to fetch weather data
 
 technology/frameworks used : HTML, CSS, JS, Node Js, Express Js, OpenWeather API 
